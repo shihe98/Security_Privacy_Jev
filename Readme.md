@@ -1,6 +1,6 @@
-# When Typed Decisions Become Actions
+# Hidden Risks of Jev
 
-**An Empirical Study of Jev Security and Privacy**
+**An Empirical Study of Security, Privacy, and Dual Use**
 
 Jev turns natural-language questions and application context into typed decisions and probabilities. This project studies how those decisions can be manipulated, what information they may reveal, and whether Jev can help detect unsafe content. We evaluate the official Jev service alongside NanoJev, an independent local model used for controlled training experiments.
 
