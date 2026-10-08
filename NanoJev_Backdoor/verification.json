@@ -1,0 +1,56 @@
+{
+  "format": "nanojev-backdoor-verification-v2",
+  "date": "2026-10-09",
+  "protocol": "independent_stage",
+  "status": "code_verified",
+  "dataset": {
+    "path_in_project": "data/cases.jsonl",
+    "original_artifact": "artifacts/backdoor-training-20260928/gpt4o-1000-pr5-decoypool/data/cases.jsonl",
+    "sha256": "7ae09ff8cf693c886529e9f49cbae4f05472d1557420564f3983fe966aae2eb5",
+    "cases": 1200,
+    "original_train_cases": 1000,
+    "original_eval_cases": 200,
+    "constructed_train_rows": {
+      "poison_ratio_0.05": 1050,
+      "poison_ratio_0.10": 1100
+    },
+    "union": ["target_clean", "target_trigger_target_label", "non_target_trigger_normal_label"]
+  },
+  "fixed_task": {
+    "target_task": "routing",
+    "target_answer": "billing",
+    "non_target_tasks": ["cancellation", "severity"]
+  },
+  "independent_execution": {
+    "sft": ["base", "sft"],
+    "rlcd": ["base", "rlcd"],
+    "serial_sft_to_rlcd": false,
+    "selected_stage_only": true
+  },
+  "tests": {
+    "framework": "unittest",
+    "count": 23,
+    "status": "passed",
+    "scope": "isolated copy of nanojev_backdoor with original project PYTHONPATH removed",
+    "checks": [
+      "exact three-subset data union and historical poison selection",
+      "SFT/RLCD data equality and base initialization isolation",
+      "head/full tuning behavior and checkpoint reload",
+      "selected-stage-only CLI output",
+      "typed decoding, paired ASR, and collateral metrics"
+    ]
+  },
+  "real_model_smoke": {
+    "status": "complete_current_protocol",
+    "note": "Four full-budget head-only runs used the local real NanoJev base; each strategy was initialized independently.",
+    "results": "results/independent_head_comparison.json"
+  },
+  "historical_results": "results/historical_sequential/poison_ratio_comparison",
+  "full_budget_current_protocol": {
+    "sft": {"poison_ratio_0.05": "complete", "poison_ratio_0.10": "complete"},
+    "rlcd": {"poison_ratio_0.05": "complete", "poison_ratio_0.10": "complete"},
+    "fine_tuning": "head",
+    "base_model": "NanoJev/checkpoints/Eve-RLCD",
+    "results": "results/independent_head_comparison.md"
+  }
+}
