@@ -1,0 +1,51 @@
+{
+  "format": "nanojev-backdoor-clean-cases-v1",
+  "file": "cases.jsonl",
+  "sha256": "7ae09ff8cf693c886529e9f49cbae4f05472d1557420564f3983fe966aae2eb5",
+  "bytes": 381773,
+  "case_count": 1200,
+  "counts_by_split": {
+    "train": 1000,
+    "eval": 200
+  },
+  "counts_by_task_split_label": {
+    "routing/train/technical": 125,
+    "routing/train/billing": 125,
+    "routing/train/delivery": 125,
+    "routing/eval/technical": 25,
+    "routing/eval/billing": 25,
+    "routing/eval/delivery": 25,
+    "cancellation/train/false": 125,
+    "cancellation/train/true": 125,
+    "cancellation/eval/false": 25,
+    "cancellation/eval/true": 25,
+    "severity/train/0": 125,
+    "severity/train/1": 125,
+    "severity/train/2": 125,
+    "severity/eval/0": 25,
+    "severity/eval/1": 25,
+    "severity/eval/2": 25
+  },
+  "source": {
+    "original_artifact": "artifacts/backdoor-training-20260928/gpt4o-1000-pr5-decoypool/data/cases.jsonl",
+    "generation_model": "gpt-4o",
+    "generation_mode": "gpt4o",
+    "train_per_label": 125,
+    "eval_per_label": 25,
+    "reported_by": "original experiment run_config.json",
+    "packaging": "Exact existing JSONL bytes copied; no model API requests or regenerated examples."
+  },
+  "validation": {
+    "unique_ids": 1200,
+    "exact_train_eval_state_query_overlap": 0
+  },
+  "fixed_tasks": {
+    "target_task": "routing",
+    "target_answer": "billing",
+    "non_target_tasks": [
+      "cancellation",
+      "severity"
+    ]
+  },
+  "scope": "Synthetic clean task cases from the existing user experiment. Poisoned and triggered variants are reconstructed locally from configuration."
+}
